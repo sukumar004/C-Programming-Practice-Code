@@ -52,7 +52,7 @@ struct student
 void structExample(struct student s);
 
 int main(){
-    dynamicMemoryAllocation();
+   // Enter the functoin to test,,,,,,,
 }
 
 // Arithmetic Operators 
@@ -576,7 +576,7 @@ void readFile(){
     printf(" GETS : %s",readValue);
 }
 
-//Dynamic Memory Allocation
+//Dynamic Memory Allocation using malloc and calloc
 
 void dynamicMemoryAllocation(){
     int *size,n;
@@ -592,4 +592,6 @@ void dynamicMemoryAllocation(){
     for(int i=0; i<n; i++){
         printf("%d\n",*(size + i));
     }
+
+    free(size);
 }
