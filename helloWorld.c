@@ -29,6 +29,15 @@ void arrayOfStruct(); // Array of Struct like objects stored in array in javascr
 void enumeration();
 void generateRandomNumber(); // Generate Random Number
 void bitWiseOperator(); // Botwise operator
+void pointers(int*[]); // Pointer Examples
+void accessByValue(); // Accessing by value
+void swapFunctionbyvalue(int,int); // Swap using value
+void accessByReference();  // Accessing by refernce
+void swapFunctionbyreference(int*,int*); // Access by value
+void writeFiles(); // File Handling
+void apppendFiles(); // Append Files
+void readFile(); // Read Files
+void dynamicMemoryAllocation(); // Dynamic Memory Allocation using Malloc
 
 
 // Struct 
@@ -43,7 +52,7 @@ struct student
 void structExample(struct student s);
 
 int main(){
-    bitWiseOperator();    
+    dynamicMemoryAllocation();
 }
 
 // Arithmetic Operators 
@@ -455,4 +464,132 @@ void bitWiseOperator(){
     int m = l >> 2;   // 0000 0000 -- 0
     printf("Right Shift : %d\n",m);
 
+}
+
+// Pointer in C
+
+void pointers(int *b[]){
+    // int a = 5;
+    // int *b = &a;
+
+    int array[] = {1,2,3,4};  // It is also a pointer, it holds the memory address of the first element in the array
+
+    char name[] = "Sukumar";
+
+    // printf("Pointer value b : %p\n", b);
+    // printf("Address of that Pointer Reference &a : %p\n",&a);
+    // printf("Address of the pointer that reference the address of the another pointer &b : %p\n",&b);
+
+    // printf("Size of Variable : %d\n", sizeof(a));
+    // printf("Size of reference pointer b : %d\n", sizeof(b));
+    // printf("Size of Dereference Pointer *b : %d\n", sizeof(*b));
+
+    // printf("Address of name &name : %p\n",&name); 
+    // printf("Address of name &name[0] : %p\n",&name[0]); 
+    // printf("Address of name *names : %c\n",*(name+2));
+
+    // printf("reference pointer b %p\n",b);
+    // printf("reference pointer &b %p\n",&b);
+    // printf("Dereference pointer *b %d\n",*b);
+
+    printf("Pointer parameter as array b %p\n",b);
+    printf("Pointer parameter as array &b %p\n",&b);
+    printf("Pointer parameter as array *b %d\n",*b+1);
+
+}
+
+// Access by Location using swap function -------------------It doesn't work-----------------------
+
+
+void accessByValue(){
+    int x = 5; int y=6;
+    printf("Access by value--\n");
+    printf("X = %d\n",x);
+    printf("Y = %d\n",y);
+    swapFunctionbyvalue(x,y);
+    printf("After Swap Function calling --\n");
+    printf("X = %d\n",x);
+    printf("Y = %d\n",y);
+    
+}
+
+void swapFunctionbyvalue(int a, int b){
+    int temp;
+    temp = a;
+    a = b;
+    b = temp;
+}
+// -----------------------------Oops It doesn't work------------------------------
+
+/* Because the we only pass the value to swap function, it does not change in memory location of the memory, for that
+we have to send the memory location like array, normally pointers out its first memory location,,
+*/
+
+void accessByReference(){
+    int x = 5; int y=6;
+    printf("Access by refernce--\n");
+    printf("X = %d\n",x);
+    printf("Y = %d\n",y);
+    swapFunctionbyreference(&x,&y);
+    printf("After Swap Function calling --\n");
+    printf("X = %d\n",x);
+    printf("Y = %d\n",y);
+    
+}
+
+void swapFunctionbyreference(int *a, int *b){
+    int temp;
+    temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+// File Handling
+
+// Write Files
+
+void writeFiles(){
+    FILE *Fp = fopen("fileHandline.txt","w");
+    fputc('C',Fp);
+    fputs("Hello Sukumar",Fp);
+    fclose(Fp);
+}
+
+// Append the file
+
+void apppendFiles(){
+    FILE *Fp = fopen("fileHandline.txt","a");
+    fputc('A',Fp);
+    fputs("Appended Letter",Fp);
+    fclose(Fp);
+}
+
+// Read the file
+
+void readFile(){
+    FILE *Fp = fopen("fileHandline.txt","r");
+    char getC = fgetc(Fp);
+    char readValue[100];
+    fgets(readValue,100,Fp);
+    fclose(Fp);
+    printf(" GETC : %c",getc);
+    printf(" GETS : %s",readValue);
+}
+
+//Dynamic Memory Allocation
+
+void dynamicMemoryAllocation(){
+    int *size,n;
+    // size =(int*)malloc(n*sizeof(int));
+    size = (int*)calloc(n,sizeof(int));
+    printf("Enter the total number of inputs : \n");
+    scanf("%d",&n);
+    printf("Enter the input : \n");
+    for(int i=0; i<n;i++){
+        scanf("%d",size+i);
+    }
+    printf("Print input values\n");
+    for(int i=0; i<n; i++){
+        printf("%d\n",*(size + i));
+    }
 }
